@@ -8,6 +8,49 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+//Vue-Router
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+
+const routes = [
+    { path: '/dashboard', component:require('./components/dashboard/main.vue').default},
+    { path: '/kategori', component:require('./components/dashboard/kategori.vue').default},
+    { path: '/pesan', component:require('./components/dashboard/pesan.vue').default},
+    { path: '/sambat', component:require('./components/dashboard/sambat.vue').default},
+    { path: '/respon', component:require('./components/dashboard/respon.vue').default},
+    { path: '/users', component:require('./components/dashboard/user.vue').default},
+    { path: '/roles', component:require('./components/dashboard/roles.vue').default},
+
+]
+
+const router = new VueRouter({
+    mode:'history',
+    routes
+})
+
+//Element UI
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI);
+
+//Sweet Alert
+import Swal from 'sweetalert2'
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
+  window.Swal = Swal;
+  window.Toast = Toast;
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -29,4 +72,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    router
 });

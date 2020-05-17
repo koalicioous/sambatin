@@ -15,3 +15,29 @@
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
 @import '~@fortawesome/fontawesome-free/scss/brands.scss';
 
+//Element UI
+@import "~element-ui/packages/theme-chalk/src/index";
+
+
+//Temporary CSS
+.sidebar-dark-primary {
+    background-color: #083885 !important;
+}
+
+.content-wrapper {
+    background-color: #edf2fa !important;
+}
+
+.router-link-exact-active {
+    color: #292825 !important;
+    background-color: #fcba03 !important;
+}
+
+.right-sidebar {
+    color: white !important;
+}
+
+.right-sidebar:hover {
+    color: white !important;
+    background-color: #fcba03 !important;
+}
