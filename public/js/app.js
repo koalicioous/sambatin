@@ -3903,6 +3903,90 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _pesan_create_pesan_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pesan/create-pesan.vue */ "./resources/js/components/dashboard/pesan/create-pesan.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    createPesan: _pesan_create_pesan_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      isCreating: false
+    };
+  },
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/pesan/create-pesan.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard/pesan/create-pesan.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3920,8 +4004,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      labelPosition: 'top',
+      pesan: {
+        inisial: '',
+        konten: '',
+        kategori: '',
+        id_tema: ''
+      },
+      kategoris: [],
+      temas: ''
+    };
+  },
+  methods: {
+    loadKategori: function loadKategori() {
+      var _this = this;
+
+      axios.get('/loadKategori').then(function (response) {
+        _this.kategoris = response.data;
+      });
+    },
+    handleCategory: function handleCategory(event) {
+      this.pesan.id_tema = '';
+      this.temas = this.kategoris.find(function (item) {
+        return item.nama == event;
+      }).temas;
+      console.table(this.temas);
+    }
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.loadKategori();
   }
 });
 
@@ -57113,6 +57226,140 @@ exports.default = { use: use, t: t, i18n: i18n };
 
 /***/ }),
 
+/***/ "./node_modules/element-ui/lib/locale/lang/id.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/element-ui/lib/locale/lang/id.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = {
+  el: {
+    colorpicker: {
+      confirm: 'Pilih',
+      clear: 'Kosongkan'
+    },
+    datepicker: {
+      now: 'Sekarang',
+      today: 'Hari ini',
+      cancel: 'Batal',
+      clear: 'Kosongkan',
+      confirm: 'Ya',
+      selectDate: 'Pilih tanggal',
+      selectTime: 'Pilih waktu',
+      startDate: 'Tanggal Mulai',
+      startTime: 'Waktu Mulai',
+      endDate: 'Tanggal Selesai',
+      endTime: 'Waktu Selesai',
+      prevYear: 'Previous Year', // to be translated
+      nextYear: 'Next Year', // to be translated
+      prevMonth: 'Previous Month', // to be translated
+      nextMonth: 'Next Month', // to be translated
+      year: 'Tahun',
+      month1: 'Januari',
+      month2: 'Februari',
+      month3: 'Maret',
+      month4: 'April',
+      month5: 'Mei',
+      month6: 'Juni',
+      month7: 'Juli',
+      month8: 'Agustus',
+      month9: 'September',
+      month10: 'Oktober',
+      month11: 'November',
+      month12: 'Desember',
+      // week: 'minggu',
+      weeks: {
+        sun: 'Min',
+        mon: 'Sen',
+        tue: 'Sel',
+        wed: 'Rab',
+        thu: 'Kam',
+        fri: 'Jum',
+        sat: 'Sab'
+      },
+      months: {
+        jan: 'Jan',
+        feb: 'Feb',
+        mar: 'Mar',
+        apr: 'Apr',
+        may: 'Mei',
+        jun: 'Jun',
+        jul: 'Jul',
+        aug: 'Agu',
+        sep: 'Sep',
+        oct: 'Okt',
+        nov: 'Nov',
+        dec: 'Des'
+      }
+    },
+    select: {
+      loading: 'Memuat',
+      noMatch: 'Tidak ada data yg cocok',
+      noData: 'Tidak ada data',
+      placeholder: 'Pilih'
+    },
+    cascader: {
+      noMatch: 'Tidak ada data yg cocok',
+      loading: 'Memuat',
+      placeholder: 'Pilih',
+      noData: 'Tidak ada data'
+    },
+    pagination: {
+      goto: 'Pergi ke',
+      pagesize: '/laman',
+      total: 'Total {total}',
+      pageClassifier: ''
+    },
+    messagebox: {
+      title: 'Pesan',
+      confirm: 'Ya',
+      cancel: 'Batal',
+      error: 'Masukan ilegal'
+    },
+    upload: {
+      deleteTip: 'press delete to remove', // to be translated
+      delete: 'Hapus',
+      preview: 'Pratinjau',
+      continue: 'Lanjutkan'
+    },
+    table: {
+      emptyText: 'Tidak ada data',
+      confirmFilter: 'Konfirmasi',
+      resetFilter: 'Atur ulang',
+      clearFilter: 'Semua',
+      sumText: 'Jml'
+    },
+    tree: {
+      emptyText: 'Tidak ada data'
+    },
+    transfer: {
+      noMatch: 'Tidak ada data yg cocok',
+      noData: 'Tidak ada data',
+      titles: ['Senarai 1', 'Senarai 2'],
+      filterPlaceholder: 'Masukan kata kunci',
+      noCheckedFormat: '{total} butir',
+      hasCheckedFormat: '{checked}/{total} terpilih'
+    },
+    image: {
+      error: 'FAILED' // to be translated
+    },
+    pageHeader: {
+      title: 'Back' // to be translated
+    },
+    popconfirm: {
+      confirmButtonText: 'Yes', // to be translated
+      cancelButtonText: 'No' // to be translated
+    }
+  }
+};
+
+/***/ }),
+
 /***/ "./node_modules/element-ui/lib/locale/lang/zh-CN.js":
 /*!**********************************************************!*\
   !*** ./node_modules/element-ui/lib/locale/lang/zh-CN.js ***!
@@ -104083,30 +104330,278 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-fluid" }, [
+  return _c(
+    "div",
+    { staticClass: "container-fluid" },
+    [
+      _c("div", { staticClass: "row justify-content-center mb-2" }, [
+        _c(
+          "div",
+          { staticClass: "col-md-12" },
+          [
+            _c(
+              "el-button",
+              {
+                staticClass: "float-right",
+                on: {
+                  click: function($event) {
+                    _vm.isCreating = !_vm.isCreating
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fas fa-plus" }),
+                _vm._v("\n                Buat Pesan Baru\n            ")
+              ]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Pesan Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("\n                    Pesan Component\n                ")
+        _c(
+          "div",
+          { staticClass: "col-md-12 px-0" },
+          [
+            _c(
+              "el-collapse-transition",
+              [_vm.isCreating ? _c("createPesan") : _vm._e()],
+              1
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "el-row",
+        { attrs: { gutter: 15 } },
+        [
+          _c(
+            "el-col",
+            { attrs: { span: "6" } },
+            [
+              _c(
+                "el-card",
+                { staticStyle: { height: "250px", position: "relative" } },
+                [
+                  _c("div", { staticClass: "my-2" }, [
+                    _c("strong", [
+                      _vm._v("Relationship > Habis diputusin pacar")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "my-3" }, [
+                    _vm._v(
+                      "\n                    disini bakal tertulis apa yang menjadi isi dari pesan yang disampaikan oleh orang-orang untuk mengungkap kegalauannya\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticStyle: {
+                        position: "absolute",
+                        bottom: "0",
+                        right: "0",
+                        margin: "15px"
+                      }
+                    },
+                    [
+                      _c("el-button", { attrs: { size: "mini" } }, [
+                        _vm._v(
+                          "\n                        tes\n                    "
+                        )
+                      ])
+                    ],
+                    1
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/pesan/create-pesan.vue?vue&type=template&id=d8336fb8&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard/pesan/create-pesan.vue?vue&type=template&id=d8336fb8& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container-fluid" },
+    [
+      _c(
+        "el-row",
+        [
+          _c("el-col", { attrs: { span: 24 } }, [
+            _c("div", { staticClass: "card" }, [
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c(
+                    "el-form",
+                    {
+                      ref: "create-pesan",
+                      attrs: {
+                        model: _vm.pesan,
+                        "label-width": "120px",
+                        "label-position": _vm.labelPosition
+                      }
+                    },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "Kategori", prop: "kategori" } },
+                        [
+                          _c(
+                            "el-select",
+                            {
+                              attrs: { placeholder: "Pilih sebuah kategori" },
+                              on: {
+                                change: function($event) {
+                                  return _vm.handleCategory($event)
+                                }
+                              },
+                              model: {
+                                value: _vm.pesan.kategori,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.pesan, "kategori", $$v)
+                                },
+                                expression: "pesan.kategori"
+                              }
+                            },
+                            _vm._l(_vm.kategoris, function(item) {
+                              return _c("el-option", {
+                                key: item.id,
+                                attrs: { label: item.nama, value: item.nama }
+                              })
+                            }),
+                            1
+                          ),
+                          _vm._v(
+                            "\n                            -\n                            "
+                          ),
+                          _c(
+                            "el-select",
+                            {
+                              attrs: { placeholder: "Pilih temanya" },
+                              model: {
+                                value: _vm.pesan.id_tema,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.pesan, "id_tema", $$v)
+                                },
+                                expression: "pesan.id_tema"
+                              }
+                            },
+                            _vm._l(_vm.temas, function(tema) {
+                              return _c("el-option", {
+                                key: tema.id,
+                                attrs: { label: tema.judul, value: tema.id }
+                              })
+                            }),
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "Pesan", prop: "pesan" } },
+                        [
+                          _c("el-input", {
+                            attrs: {
+                              type: "textarea",
+                              rows: 5,
+                              maxlength: "500",
+                              placeholder:
+                                "Masukkan pesan yang ingin kamu sampaikan",
+                              "show-word-limit": ""
+                            },
+                            model: {
+                              value: _vm.pesan.konten,
+                              callback: function($$v) {
+                                _vm.$set(_vm.pesan, "konten", $$v)
+                              },
+                              expression: "pesan.konten"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "Inisial", prop: "inisial" } },
+                        [
+                          _c("el-input", {
+                            attrs: { placeholder: "Masukkan inisial penulis" },
+                            model: {
+                              value: _vm.pesan.inisial,
+                              callback: function($$v) {
+                                _vm.$set(_vm.pesan, "inisial", $$v)
+                              },
+                              expression: "pesan.inisial"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-button",
+                        {
+                          staticStyle: { float: "right" },
+                          attrs: { type: "primary" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            Spread The Joy\n                        "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ])
           ])
-        ])
-      ])
-    ])
-  }
-]
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -119402,8 +119897,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var element_ui__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(element_ui__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! element-ui/lib/theme-chalk/index.css */ "./node_modules/element-ui/lib/theme-chalk/index.css");
 /* harmony import */ var element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var element_ui_lib_locale_lang_id__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! element-ui/lib/locale/lang/id */ "./node_modules/element-ui/lib/locale/lang/id.js");
+/* harmony import */ var element_ui_lib_locale_lang_id__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(element_ui_lib_locale_lang_id__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -119444,21 +119941,24 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 
 
 
-Vue.use(element_ui__WEBPACK_IMPORTED_MODULE_1___default.a); //Sweet Alert
+
+Vue.use(element_ui__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  locale: element_ui_lib_locale_lang_id__WEBPACK_IMPORTED_MODULE_3___default.a
+}); //Sweet Alert
 
 
-var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.mixin({
+var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
   toast: true,
   position: 'top-end',
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,
   onOpen: function onOpen(toast) {
-    toast.addEventListener('mouseenter', sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.stopTimer);
-    toast.addEventListener('mouseleave', sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.resumeTimer);
+    toast.addEventListener('mouseenter', sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.stopTimer);
+    toast.addEventListener('mouseleave', sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.resumeTimer);
   }
 });
-window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a;
+window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a;
 window.Toast = Toast;
 /**
  * The following block of code may be used to automatically register your
@@ -119871,6 +120371,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pesan_vue_vue_type_template_id_f85c49d6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pesan_vue_vue_type_template_id_f85c49d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/dashboard/pesan/create-pesan.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/dashboard/pesan/create-pesan.vue ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _create_pesan_vue_vue_type_template_id_d8336fb8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create-pesan.vue?vue&type=template&id=d8336fb8& */ "./resources/js/components/dashboard/pesan/create-pesan.vue?vue&type=template&id=d8336fb8&");
+/* harmony import */ var _create_pesan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./create-pesan.vue?vue&type=script&lang=js& */ "./resources/js/components/dashboard/pesan/create-pesan.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _create_pesan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _create_pesan_vue_vue_type_template_id_d8336fb8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _create_pesan_vue_vue_type_template_id_d8336fb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/dashboard/pesan/create-pesan.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/dashboard/pesan/create-pesan.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/dashboard/pesan/create-pesan.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_create_pesan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./create-pesan.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/pesan/create-pesan.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_create_pesan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/dashboard/pesan/create-pesan.vue?vue&type=template&id=d8336fb8&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/dashboard/pesan/create-pesan.vue?vue&type=template&id=d8336fb8& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_create_pesan_vue_vue_type_template_id_d8336fb8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./create-pesan.vue?vue&type=template&id=d8336fb8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/pesan/create-pesan.vue?vue&type=template&id=d8336fb8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_create_pesan_vue_vue_type_template_id_d8336fb8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_create_pesan_vue_vue_type_template_id_d8336fb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
