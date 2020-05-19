@@ -184,6 +184,7 @@ class PesanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $target = \App\Pesan::find($id)->delete();
+        return true;
     }
 }

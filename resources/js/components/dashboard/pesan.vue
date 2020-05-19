@@ -25,11 +25,11 @@
             </el-tab-pane>
             <el-tab-pane name="third">
                 <span slot="label"><i class="fas fa-check" style="color:#38c172"></i> Sudah Terverifikasi</span>
-                <Verified :verifieds="verifieds"></Verified>
+                <Verified :verifieds="verifieds" @edited="onEditedPesan"></Verified>
             </el-tab-pane>
             <el-tab-pane label="Diarsipkan" name="fourth">
                 <span slot="label"><i class="fas fa-archive" style="color:#e3342f"></i> Diarsipkan</span>
-                <Archived :archiveds="archiveds"></Archived>
+                <Archived :archiveds="archiveds" @deleted="onDeletedPesan"></Archived>
             </el-tab-pane>
         </el-tabs>
     </div>
@@ -85,7 +85,7 @@
             loadArchiveds(){
                 axios.get('/pesan/archiveds')
                 .then(response => {
-                    this.archived = response.data
+                    this.archiveds = response.data
                 })
                 .catch(response => {
                     console.log('Failed to load archived pesans')
@@ -98,6 +98,9 @@
                 this.loadPesan()
                 this.loadVerifieds()
                 this.loadUnverifieds()
+                this.loadArchiveds()
+            },
+            onDeletedPesan(){
                 this.loadArchiveds()
             }
         },

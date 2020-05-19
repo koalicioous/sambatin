@@ -32,10 +32,11 @@ Route::group(['middleware' => ['role:super-admin']], function () {
     Route::post('/pesan', 'PesanController@store');
     Route::get('/pesan/verified', 'PesanController@loadVerifieds');
     Route::get('/pesan/unverified', 'PesanController@loadUnverifieds');
-    Route::get('/pesan/archived', 'PesanController@loadArchiveds');
+    Route::get('/pesan/archiveds', 'PesanController@loadArchiveds');
     Route::post('/pesan/update', 'PesanController@update');
     Route::patch('/pesan/{pesan}/verify', 'PesanController@verify');
     Route::patch('/pesan/{pesan}/archive', 'PesanController@archive');
+    Route::delete('/pesan/{pesan}', 'PesanController@destroy');
 
 
     Route::get('/dashboard', 'DashboardController@index');

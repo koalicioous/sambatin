@@ -7,6 +7,8 @@
                     <div class="my-1">
                         <el-tag type="primary" size="mini">{{ p.kategori.nama }}</el-tag>
                         <el-tag type="info" size="mini"> {{ p.tema.judul }}</el-tag>
+                        <el-tag type="success" size="mini" v-if="p.is_checked == 1">verified</el-tag>
+                        <el-tag type="danger" size="mini" v-if="p.is_archived == 1">Archived</el-tag>
                     </div>
                     <div class="my-2" style="max-height:200px;overflow:auto;padding:15px">
                             {{ p.konten }}

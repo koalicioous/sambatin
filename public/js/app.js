@@ -4003,7 +4003,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       axios.get('/pesan/archiveds').then(function (response) {
-        _this4.archived = response.data;
+        _this4.archiveds = response.data;
       })["catch"](function (response) {
         console.log('Failed to load archived pesans');
       });
@@ -4015,6 +4015,9 @@ __webpack_require__.r(__webpack_exports__);
       this.loadPesan();
       this.loadVerifieds();
       this.loadUnverifieds();
+      this.loadArchiveds();
+    },
+    onDeletedPesan: function onDeletedPesan() {
       this.loadArchiveds();
     }
   },
@@ -4053,12 +4056,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     archiveds: ''
   },
   data: function data() {
     return {};
+  },
+  methods: {
+    handleDelete: function handleDelete(data) {
+      var _this = this;
+
+      Swal.fire({
+        title: 'Apakah kamu Yakin?',
+        text: "Menghapus Pesan.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Hapus'
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]('/pesan/' + data).then(function (response) {
+            _this.$emit('deleted');
+
+            Swal.fire('Terhapus!', 'Pesan berhasil dihapus.', 'success');
+          })["catch"](function (response) {});
+        }
+      });
+    }
   },
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -4189,6 +4228,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -4431,12 +4472,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     verifieds: ''
@@ -4453,6 +4488,18 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (response) {
         console.log('failed to load verifieds data');
       });
+    },
+    handleArchive: function handleArchive(id) {
+      var _this2 = this;
+
+      axios.patch('/pesan/' + id + '/archive').then(function (response) {
+        Toast.fire({
+          icon: 'success',
+          title: 'Berhasil Mengarsipkan Pesan'
+        });
+
+        _this2.$emit('edited');
+      })["catch"](function (response) {});
     }
   },
   mounted: function mounted() {}
@@ -104858,7 +104905,10 @@ var render = function() {
                 _vm._v(" Sudah Terverifikasi")
               ]),
               _vm._v(" "),
-              _c("Verified", { attrs: { verifieds: _vm.verifieds } })
+              _c("Verified", {
+                attrs: { verifieds: _vm.verifieds },
+                on: { edited: _vm.onEditedPesan }
+              })
             ],
             1
           ),
@@ -104875,7 +104925,10 @@ var render = function() {
                 _vm._v(" Diarsipkan")
               ]),
               _vm._v(" "),
-              _c("Archived", { attrs: { archiveds: _vm.archiveds } })
+              _c("Archived", {
+                attrs: { archiveds: _vm.archiveds },
+                on: { deleted: _vm.onDeletedPesan }
+              })
             ],
             1
           )
@@ -104908,32 +104961,102 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container-fluid" }, [
+    _vm.archiveds.length < 1
+      ? _c("div", [_vm._v("\n        No Data to Show\n    ")])
+      : _c(
+          "div",
+          [
+            _c(
+              "el-row",
+              {
+                staticStyle: { "margin-bottom": "25px" },
+                attrs: { gutter: 15 }
+              },
+              _vm._l(_vm.archiveds, function(v) {
+                return _c(
+                  "el-col",
+                  { key: v.id, attrs: { span: 6 } },
+                  [
+                    _c(
+                      "el-card",
+                      {
+                        staticClass: "my-2",
+                        staticStyle: { position: "relative" }
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "my-1" },
+                          [
+                            _c(
+                              "el-tag",
+                              { attrs: { type: "primary", size: "mini" } },
+                              [_vm._v(_vm._s(v.kategori.nama))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "el-tag",
+                              { attrs: { type: "info", size: "mini" } },
+                              [_vm._v(" " + _vm._s(v.tema.judul))]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "my-2",
+                            staticStyle: {
+                              "max-height": "200px",
+                              overflow: "auto",
+                              padding: "15px"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(v.konten) +
+                                "\n                        " +
+                                _vm._s(/**p.konten.substring(0,250)*/) +
+                                "\n                    "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          [
+                            _c(
+                              "el-button",
+                              {
+                                attrs: { type: "danger", size: "mini" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.handleDelete(v.id)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fas fa-trash" })]
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              }),
+              1
+            )
+          ],
+          1
+        )
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-fluid" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Archived Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -105165,7 +105288,23 @@ var render = function() {
                       _vm._v(" "),
                       _c("el-tag", { attrs: { type: "info", size: "mini" } }, [
                         _vm._v(" " + _vm._s(p.tema.judul))
-                      ])
+                      ]),
+                      _vm._v(" "),
+                      p.is_checked == 1
+                        ? _c(
+                            "el-tag",
+                            { attrs: { type: "success", size: "mini" } },
+                            [_vm._v("verified")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      p.is_archived == 1
+                        ? _c(
+                            "el-tag",
+                            { attrs: { type: "danger", size: "mini" } },
+                            [_vm._v("Archived")]
+                          )
+                        : _vm._e()
                     ],
                     1
                   ),
@@ -105637,22 +105776,21 @@ var render = function() {
                         _c(
                           "div",
                           [
-                            _c("el-button", { attrs: { size: "mini" } }, [
-                              _vm._v(
-                                "\n                            Edit\n                        "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("el-button", { attrs: { size: "mini" } }, [
-                              _vm._v(
-                                "\n                            Arsipkan\n                        "
-                              )
-                            ]),
-                            _vm._v(" "),
                             _c(
                               "el-button",
-                              { attrs: { type: "success", size: "mini" } },
-                              [_c("i", { staticClass: "fas fa-check" })]
+                              {
+                                attrs: { size: "mini" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.handleArchive(v.id)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Arsipkan\n                        "
+                                )
+                              ]
                             )
                           ],
                           1

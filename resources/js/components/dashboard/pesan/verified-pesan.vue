@@ -17,14 +17,8 @@
                             {{/**p.konten.substring(0,250)*/}}
                         </div>
                         <div>
-                            <el-button size="mini">
-                                Edit
-                            </el-button>
-                            <el-button size="mini">
+                            <el-button size="mini" @click="handleArchive(v.id)">
                                 Arsipkan
-                            </el-button>
-                            <el-button type="success" size="mini">
-                                <i class="fas fa-check"></i>
                             </el-button>
                         </div>
                     </el-card>
@@ -53,6 +47,19 @@
                 })
                 .catch(response => {
                     console.log('failed to load verifieds data')
+                })
+            },
+            handleArchive(id){
+                axios.patch('/pesan/' + id + '/archive')
+                .then(response => {
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Berhasil Mengarsipkan Pesan'
+                    })
+                    this.$emit('edited')
+                })
+                .catch(response => {
+
                 })
             }
         },
