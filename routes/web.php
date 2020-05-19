@@ -28,6 +28,15 @@ Route::group(['middleware' => ['role:super-admin']], function () {
     Route::delete('/kategori/{kategori}', 'KategoriController@destroy');
     Route::get('/loadKategori', 'KategoriController@index');
 
+    Route::get('/loadPesan', 'PesanController@index');
+    Route::post('/pesan', 'PesanController@store');
+    Route::get('/pesan/verified', 'PesanController@loadVerifieds');
+    Route::get('/pesan/unverified', 'PesanController@loadUnverifieds');
+    Route::get('/pesan/archived', 'PesanController@loadArchiveds');
+    Route::post('/pesan/update', 'PesanController@update');
+    Route::patch('/pesan/{pesan}/verify', 'PesanController@verify');
+    Route::patch('/pesan/{pesan}/archive', 'PesanController@archive');
+
 
     Route::get('/dashboard', 'DashboardController@index');
     Route::get('/{vue_capture?}', function () {

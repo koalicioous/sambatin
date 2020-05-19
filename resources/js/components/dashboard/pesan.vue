@@ -11,41 +11,101 @@
         <div class="row justify-content-center">
             <div class="col-md-12 px-0">
                 <el-collapse-transition>
-                    <createPesan v-if="isCreating"></createPesan>
+                    <createPesan v-if="isCreating" @created="onCreatedPesan"></createPesan>
                 </el-collapse-transition>
             </div>
         </div>
-        <el-row :gutter="15">
-            <el-col span="6">
-                <el-card style="height:250px;position:relative">
-                    <div class="my-2">
-                        <strong>Relationship > Habis diputusin pacar</strong>
-                    </div>
-                    <div class="my-3">
-                        disini bakal tertulis apa yang menjadi isi dari pesan yang disampaikan oleh orang-orang untuk mengungkap kegalauannya
-                    </div>
-                    <div style="position:absolute;bottom:0;right:0;margin:15px">
-                        <el-button size="mini">
-                            tes
-                        </el-button>
-                    </div>
-                </el-card>
-            </el-col>
-        </el-row>
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+            <el-tab-pane label="Semua Pesan" name="all">
+                <Index :pesan="pesan"></Index>
+            </el-tab-pane>
+            <el-tab-pane name="second">
+                <span slot="label"><i class="fas fa-pause" style="color:#6cb2eb"></i> Belum Terverifikasi</span>
+                <Unverified :unverifieds="unverifieds" @edited="onEditedPesan"></Unverified>
+            </el-tab-pane>
+            <el-tab-pane name="third">
+                <span slot="label"><i class="fas fa-check" style="color:#38c172"></i> Sudah Terverifikasi</span>
+                <Verified :verifieds="verifieds"></Verified>
+            </el-tab-pane>
+            <el-tab-pane label="Diarsipkan" name="fourth">
+                <span slot="label"><i class="fas fa-archive" style="color:#e3342f"></i> Diarsipkan</span>
+                <Archived :archiveds="archiveds"></Archived>
+            </el-tab-pane>
+        </el-tabs>
     </div>
 </template>
 
 <script>
     import createPesan from './pesan/create-pesan.vue'
+    import Index from './pesan/index-pesan.vue'
+    import Verified from './pesan/verified-pesan.vue'
+    import Unverified from './pesan/unverified-pesan.vue'
+    import Archived from './pesan/archived-pesan.vue'
+
     export default {
-        components: {createPesan},
+        components: {createPesan,Index,Verified,Unverified,Archived},
         data(){
             return {
+                activeName: 'all',
                 isCreating: false,
+                pesan: '',
+                verifieds: '',
+                unverifieds: '',
+                archiveds: '',
+            }
+        },
+        methods: {
+            handleClick(tab, event) {
+                
+            },
+            loadPesan() {
+                axios.get('/loadPesan')
+                .then(response => {
+                    this.pesan = response.data
+                })
+            },
+            loadVerifieds(){
+                axios.get('/pesan/verified')
+                .then(response => {
+                    this.verifieds = response.data
+                })
+                .catch(response => {
+                    console.log('Failed to load verified pesans')
+                })
+            },
+            loadUnverifieds(){
+                axios.get('/pesan/unverified')
+                .then(response => {
+                    this.unverifieds = response.data
+                })
+                .catch(response => {
+                    console.log('Failed to load unverified pesans')
+                })
+            },
+            loadArchiveds(){
+                axios.get('/pesan/archiveds')
+                .then(response => {
+                    this.archived = response.data
+                })
+                .catch(response => {
+                    console.log('Failed to load archived pesans')
+                })
+            },
+            onCreatedPesan(){
+                this.loadUnverifieds()
+            },
+            onEditedPesan(){
+                this.loadPesan()
+                this.loadVerifieds()
+                this.loadUnverifieds()
+                this.loadArchiveds()
             }
         },
         mounted() {
-            console.log('Component mounted.')
+            this.loadPesan()
+            this.loadUnverifieds()
+            this.loadVerifieds()
+            this.loadArchiveds()
         }
     }
 </script>

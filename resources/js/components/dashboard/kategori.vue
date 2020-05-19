@@ -27,9 +27,13 @@
                         <el-row :gutter="15">
                             <el-col :span="6" v-for="tema in props.row.temas" :key="tema.id">
                                 <el-card>
-                                     {{ tema.judul }}
-                                     <el-button icon="el-icon-delete" style="float:right" class="mx-1" size="mini" circle @click="handleDeleteTheme(tema)"></el-button>
-                                     <el-button icon="el-icon-edit" style="float:right" class="mx-1" size="mini" circle @click="handleDeleteTheme(tema)"></el-button>
+                                        <div>
+                                            {{ tema.judul }}
+                                        </div>
+                                        <div style="margin-top:15px">
+                                            <el-button icon="el-icon-delete" class="mx-1" size="mini"  @click="handleDeleteTheme(tema)"></el-button>
+                                            <el-button icon="el-icon-edit" class="mx-1" size="mini"  @click="handleDeleteTheme(tema)"></el-button>
+                                        </div>
                                 </el-card>
                             </el-col>
                         </el-row>

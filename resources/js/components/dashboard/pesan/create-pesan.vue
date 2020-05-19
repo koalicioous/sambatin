@@ -4,7 +4,7 @@
             <el-col :span="24">
                 <div class="card">
                     <div class="card-body">
-                        <el-form ref="create-pesan" :model="pesan" label-width="120px" :label-position="labelPosition">
+                        <el-form ref="create-pesan" :model="pesan" label-width="120px" :label-position="labelPosition" :rules="newPesanRules">
                             <el-form-item label="Kategori" prop="kategori">
                                 <el-select v-model="pesan.kategori" placeholder="Pilih sebuah kategori" @change="handleCategory($event)">
                                     <el-option v-for="item in kategoris" :key="item.id" :label="item.nama" :value="item.nama">
@@ -16,14 +16,14 @@
                                     </el-option>
                                 </el-select>
                             </el-form-item>
-                            <el-form-item label="Pesan" prop="pesan">
+                            <el-form-item label="Pesan" prop="konten">
                                 <el-input type="textarea" :rows="5" maxlength="500" placeholder="Masukkan pesan yang ingin kamu sampaikan" v-model="pesan.konten" show-word-limit>
                                 </el-input>
                             </el-form-item>
                             <el-form-item label="Inisial" prop="inisial">
-                                <el-input v-model="pesan.inisial" placeholder="Masukkan inisial penulis"></el-input>
+                                <el-input v-model="pesan.inisial" placeholder="Masukkan inisial penulis" maxlength="2" show-word-limit></el-input>
                             </el-form-item>
-                            <el-button type="primary" style="float:right">
+                            <el-button type="primary" style="float:right" @click="handleStorePesan(pesan)">
                                 Spread The Joy
                             </el-button>
                         </el-form>
@@ -47,6 +47,14 @@
                 },
                 kategoris: [],
                 temas: '',
+                newPesanRules: {
+                    kategori: [
+                        { required:true, message: "Tema tidak boleh kosong", trigger: 'blur' }
+                    ],
+                    konten: [
+                        { required:true, message: "Konten tidak boleh kosong", trigger: 'blur'}
+                    ],
+                }
             }
         },
         methods: {
@@ -59,7 +67,26 @@
             handleCategory(event){
                 this.pesan.id_tema = ''
                 this.temas = this.kategoris.find(item => item.nama == event).temas
-                console.table(this.temas)
+            },
+            handleStorePesan(data){
+                this.$refs['create-pesan'].validate((valid) => {
+                    if (valid) {
+                        axios.post('/pesan', this.pesan)
+                        .then(response => {
+                            this.$refs['create-pesan'].resetFields();
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Berhasil menambahkan pesan baru'
+                            })
+                            this.$emit('created')
+                        })
+                        .catch(response => {
+
+                        })
+                    } else {
+                        alert('not valid')
+                    }
+                })
             }
         },
         mounted() {
