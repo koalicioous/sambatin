@@ -20,6 +20,8 @@
 
 
 //Temporary CSS
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap');
+
 .sidebar-dark-primary {
     background-color: #083885 !important;
 }
@@ -41,3 +43,30 @@
     color: white !important;
     background-color: #fcba03 !important;
 }
+
+//User Side Styling
+html {
+    font-size: 1rem;
+    color: #063855 !important;
+  }
+  
+  @include media-breakpoint-up(sm) {
+    html {
+      font-size: 1.2rem;
+      color: #063855 !important;
+    }
+  }
+  
+  @include media-breakpoint-up(md) {
+    html {
+      font-size: 1.4rem;
+      color: #063855 !important;
+    }
+  }
+  
+  @include media-breakpoint-up(lg) {
+    html {
+      font-size: 1.6rem;
+      color: #063855 !important;
+    }
+  }

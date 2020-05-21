@@ -38,6 +38,9 @@ Route::group(['middleware' => ['role:super-admin']], function () {
     Route::patch('/pesan/{pesan}/archive', 'PesanController@archive');
     Route::delete('/pesan/{pesan}', 'PesanController@destroy');
 
+    Route::get('/loadSambat', 'SambatController@index');
+    Route::post('/sambat', 'SambatController@store');
+
 
     Route::get('/dashboard', 'DashboardController@index');
     Route::get('/{vue_capture?}', function () {
