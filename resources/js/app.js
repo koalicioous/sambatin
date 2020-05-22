@@ -43,6 +43,41 @@ const routes = [
       path: '/klaim-nama',
       name: 'klaim-nama',
       component: require('./components/user-side/klaim-nama.vue').default
+    },
+    {
+      path: '/halaman-profil',
+      name: 'halaman-profil',
+      component: require('./components/user-side/halaman-profil.vue').default
+    },
+    {
+      path: '/show-sambat',
+      name: 'show-sambat',
+      component: require('./components/user-side/show-sambat.vue').default
+    },
+    {
+      path: '/menulis-respon',
+      name: 'menulis-respon',
+      component: require('./components/user-side/menulis-respon.vue').default
+    },
+    {
+      path: '/menulis-sambat',
+      name: 'menulis-sambat',
+      component: require('./components/user-side/menulis-sambat.vue').default
+    },
+    {
+      path: '/eksplor-sambat',
+      name: 'eksplor-sambat',
+      component: require('./components/user-side/eksplor-sambat.vue').default
+    },
+    {
+      path: '/search-result',
+      name: 'search-result',
+      component: require('./components/user-side/search-result.vue').default
+    },
+    {
+      path: '/menulis-pesan',
+      name: 'menulis-pesan',
+      component: require('./components/user-side/menulis-pesan.vue').default
     }
 ]
 

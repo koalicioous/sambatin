@@ -13,21 +13,21 @@
                 <div class="buat-nama-input">
                     <div class="pesan-category-input">
                         <p class="pesan-category-label">Aku adalah</p>
-                        <select name="kategori" id="" class="custom-select" aria-placeholder="Pilih sebuah kategori" v-model="nama.subjek" v-on:change="">
+                        <select name="kategori" id="" class="custom-select" aria-placeholder="Pilih sebuah kategori" v-model="nama.subjek">
                             <option value="" disabled selected>Pilih sebuah subjek</option>
                             <option value="kolang-kaling">Kolang-Kaling</option>
                         </select>
                     </div>
                     <div class="pesan-category-input">
                         <p class="pesan-category-label">yang sedang</p>
-                        <select name="kategori" id="" class="custom-select" aria-placeholder="Pilih sebuah kategori" v-model="nama.predikat" v-on:change="">
+                        <select name="kategori" id="" class="custom-select" aria-placeholder="Pilih sebuah kategori" v-model="nama.predikat" >
                             <option value="" disabled selected>Beri subjek sebuah predikat</option>
                             <option value="membaca buku">membaca buku</option>
                         </select>
                     </div>
                     <div class="pesan-category-input">
                         <p class="pesan-category-label">keterangan</p>
-                        <select name="kategori" id="" class="custom-select" aria-placeholder="Pilih sebuah kategori" v-model="nama.keterangan" v-on:change="">
+                        <select name="kategori" id="" class="custom-select" aria-placeholder="Pilih sebuah kategori" v-model="nama.keterangan">
                             <option value="" disabled selected>beri pemanis untuk nama anonimmu</option>
                             <option value="di pagi hari">di pagi hari</option>
                         </select>

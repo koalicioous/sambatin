@@ -18,9 +18,9 @@
             </div>
         </div>
         <div class="sub-menu d-flex justify-content-center align-items-center">
-            <a href="" class="sub-menu-button">Tulis Pesan untuk Orang Lain</a>
-            <a href="" class="sub-menu-button">Baca Sambat dan Beri Semangat</a>
-            <a href="" class="sub-menu-button">Baca Respon Sambatku</a>
+            <router-link to="/menulis-pesan" class="sub-menu-button">Tulis Pesan untuk Orang Lain</router-link>
+            <router-link to="/eksplor-sambat" class="sub-menu-button">Baca Sambat dan Beri Semangat</router-link>
+            <router-link to="/klaim-nama" class="sub-menu-button">Baca Respon Sambatku</router-link>
         </div>
         <div class="credit d-flex justify-content-center align-items-center">
                 <p>Sambat by <a href="">eQuilibrium</a> | from Covid-19 quarantine depression</p>
