@@ -21,6 +21,29 @@ const routes = [
     { path: '/users', component:require('./components/dashboard/user.vue').default},
     { path: '/roles', component:require('./components/dashboard/roles.vue').default},
 
+    { path: '/', component:require('./components/user-side/welcome.vue').default},
+    { path: '/temukan-pesan', component:require('./components/user-side/temukan-pesan.vue').default},
+
+    {
+      path: '/isi-pesan',
+      name: 'isi-pesan',
+      component: require('./components/user-side/isi-pesan.vue').default
+    },
+    {
+      path: '/sebelum-sambat',
+      name: 'sebelum-sambat',
+      component: require('./components/user-side/sebelum-sambat.vue').default
+    },
+    {
+      path: '/buat-nama',
+      name: 'buat-nama',
+      component: require('./components/user-side/buat-nama.vue').default
+    },
+    {
+      path: '/klaim-nama',
+      name: 'klaim-nama',
+      component: require('./components/user-side/klaim-nama.vue').default
+    }
 ]
 
 const router = new VueRouter({

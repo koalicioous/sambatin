@@ -9,8 +9,8 @@
         <title>Sambatin</title>
     </head>
     <body>
-        <div class="container-fluid" id="app">
-            <welcome-component></welcome-component>
+        <div class="wrapper" id="app">
+            <router-view></router-view>
         </div>
     <!-- REQUIRED SCRIPTS -->
     <script src="{{ asset('js/app.js') }}"></script>

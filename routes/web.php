@@ -18,6 +18,10 @@ Route::get('/', function () {
 });
 Auth::routes();
 
+Route::get('/{vue_capture?}', function () {
+    return view('welcome');
+})->where('vue_capture', '[\/\w\.-]*');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['role:super-admin']], function () {
@@ -43,10 +47,11 @@ Route::group(['middleware' => ['role:super-admin']], function () {
 
 
     Route::get('/dashboard', 'DashboardController@index');
-    Route::get('/{vue_capture?}', function () {
-        return view('dashboard.master');
-    })->where('vue_capture', '[\/\w\.-]*');
+    // Route::get('/{vue_capture?}', function () {
+    //     return view('dashboard.master');
+    // })->where('vue_capture', '[\/\w\.-]*');
 
 });
+
 
 
